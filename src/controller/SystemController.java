@@ -6,6 +6,8 @@ import database.MemberToSave;
 import database.ReadAllMembers;
 import database.ReadFiles;
 import factory.MemberGenerator;
+import persons.Cashier;
+import persons.EliteSwimmer;
 import persons.Member;
 
 import java.util.ArrayList;
@@ -15,8 +17,9 @@ public class SystemController {
     static MemberToSave memberToSave = new MemberToSave();
     private Menu menu = new Menu();
     private MemberGenerator member = new MemberGenerator();
-    private ReadAllMembers readAllMembers = new ReadAllMembers();
-    private ArrayList<Member> members = new ArrayList<Member>();
+    private EliteSwimmer eliteSwimmer = new EliteSwimmer();
+    private Cashier cashier = new Cashier();
+
 
     public void chooseOptions(){
         int userInput;
@@ -48,11 +51,20 @@ public class SystemController {
                     menu.optionsForCashier();
                     int cashierChoice = menu.getUserInput();
                     if (cashierChoice == 1){
-                        //show expected payments
+                        //Show contingent prices
+                        cashier.showContingentPrices();
                     }else if (cashierChoice == 2){
+                        //show expected payments
+                        cashier.getExpectedContigentRevenue();
+                    }else if (cashierChoice == 3){
                         //show members in arrears
-                        new LoadMemberMissingPayment();
-                    }else if (cashierChoice == 9){
+                        cashier.getMembersWhoHasntPayed();
+                    } else if (cashierChoice == 4){
+                        //change member payment status
+                        cashier.getMembersWhoHasntPayed();
+                        cashier.setMembersWhoHasntPayed();
+
+                    } else if (cashierChoice ==9){
 
                     }
                     break;
@@ -64,12 +76,12 @@ public class SystemController {
                         //Show top 5 elite swimmers
                     }else if (coachChoice == 2){
                         //Show elite swimmers
-                        members.addAll(readAllMembers.ReadAllMembers());
-                        for (int i = 0 Member j = members.get(i); i < members.size() ; i++) {
-                            if (members.get(i).isEliteSwimmer()){
-                                System.out.println();
-                            }
-                        }
+
+                        eliteSwimmer.showEliteSwimmers();
+
+                        //til at få
+
+
 
                     }else if (coachChoice == 3){
                         //create result
@@ -85,5 +97,4 @@ public class SystemController {
         SystemController hej = new SystemController();
         hej.chooseOptions();
     }
-
 }

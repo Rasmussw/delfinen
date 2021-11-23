@@ -15,6 +15,5 @@ public class DelfinenApp {
         new ReadFiles("resources/memberIdCounter.csv");
         MemberGenerator memberGenerator = new MemberGenerator();
         memberToSave.saveMemberDetailsToFile(memberGenerator.MemberGenerator());
-
     }
 }

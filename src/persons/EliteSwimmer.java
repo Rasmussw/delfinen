@@ -1,7 +1,35 @@
 package persons;
 
-public class EliteSwimmer extends Member {
-    public EliteSwimmer(String name, int age, String adress, int memberId, int memberCounter, boolean isActive, boolean isUnder18, boolean isEliteSwimmer, boolean hasPaid) {
-        super(name, age, adress, memberId, isActive, isUnder18, isEliteSwimmer, hasPaid);
+import database.ReadAllMembers;
+
+import java.util.ArrayList;
+
+public class EliteSwimmer {
+
+    private ReadAllMembers readAllMembers = new ReadAllMembers();
+    private ArrayList<Member> members = new ArrayList<Member>();
+    private ArrayList<Member> eliteMembers = new ArrayList<Member>();
+
+
+
+    public void addEliteSwimmer() {
+
+        members.addAll(readAllMembers.ReadAllMembers());
+
+        //til at få
+
+        for (int i = 0; i < members.size(); i++) {
+            if (members.get(i).isEliteSwimmer() == (true)) {
+                eliteMembers.add(members.get(i));
+                //System.out.println(eliteMembers.get(i));
+            } else {
+            }
+        }
+    }
+    public void showEliteSwimmers(){
+        addEliteSwimmer();
+        for (Member eliteSwimmer : eliteMembers) {
+            System.out.println(eliteSwimmer);
+        }
     }
 }

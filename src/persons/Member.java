@@ -57,14 +57,6 @@ public class Member {
         this.memberId = memberId;
     }
 
-    public int getMemberCounter() {
-        return memberCounter;
-    }
-
-    public void setMemberCounter(int memberCounter) {
-        this.memberCounter = memberCounter;
-    }
-
     public boolean isActive() {
         return isActive;
     }
@@ -104,7 +96,6 @@ public class Member {
                 ", age=" + age +
                 ", adress='" + adress + '\'' +
                 ", memberId=" + memberId +
-                ", memberCounter=" + memberCounter +
                 ", isActive=" + isActive +
                 ", isUnder18=" + isUnder18 +
                 ", isEliteSwimmer=" + isEliteSwimmer +

@@ -98,7 +98,7 @@ public class LoadAllEliteSwimmers {
         } catch (Exception e) {
             System.out.println("File couldn't read");
         }
-        System.out.println(member);
+        //System.out.println(member);
         return member;
     }
 

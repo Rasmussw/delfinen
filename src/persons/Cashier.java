@@ -1,9 +1,15 @@
 package persons;
 
+import database.MemberToSave;
 import database.ReadAllMembers;
+import factory.MemberGenerator;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 
 public class Cashier {
     private ArrayList<Member> members = new ArrayList<Member>();
@@ -20,7 +26,9 @@ public class Cashier {
 
     public void getExpectedContigentRevenue(){
         int expectedContigent = 0;
-        members.addAll(readAllMembers.ReadAllMembers());
+        members.removeAll(members);
+        members = readAllMembers.ReadAllMembers();
+
 
         for (int i = 0; i <members.size() ; i++) {
 
@@ -40,27 +48,64 @@ public class Cashier {
     }
 
     public void getMembersWhoHasntPayed(){
-        members.addAll(readAllMembers.ReadAllMembers());
 
-        for (int i = 0; i < members.size(); i++) {
-            if (members.get(i).isHasPaid() == false ){
-                hasntPayedMembers.add(members.get(i));
+        members.removeAll(members);
+        hasntPayedMembers.removeAll(hasntPayedMembers);
+
+        members = readAllMembers.ReadAllMembers();
+
+            for (int i = 0; i < members.size(); i++) {
+                if (members.get(i).isHasPaid() == false) {
+                    hasntPayedMembers.add(members.get(i));
+                }
             }
-
-        }
+        System.out.println(hasntPayedMembers.size());
 
         for (Member member:hasntPayedMembers) {
             System.out.println(member);
+
         }
     }
+/*
+    public ArrayList<Member> setFile(){
+        File membersFile = new File("resources/members.csv");
+        String line = "";
+        String[] membersArray = new String[8];
+        ArrayList<Member> membersArrayList = new ArrayList<Member>();
 
+        try {
+            Scanner scanner =new Scanner(membersFile);
+            while (scanner.hasNextLine()){
+                line = scanner.nextLine();
+                membersArray = line.split(",");
 
+                String name = membersArray[0];
+                int age = Integer.parseInt(membersArray[1]);
+                String adress = membersArray[2];
+                int memberId = Integer.parseInt(membersArray[3]);
+                Boolean isActive = Boolean.parseBoolean(membersArray[4]);
+                Boolean isUnder18 = Boolean.parseBoolean(membersArray[5]);
+                Boolean isEliteSwimmer = Boolean.parseBoolean(membersArray[6]);
+                Boolean hasPaid = Boolean.parseBoolean(membersArray[7]);
+
+                Member member = new Member(name, age, adress, memberId, isActive, isUnder18, isEliteSwimmer,hasPaid);
+
+                membersArrayList.add(member);
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return membersArrayList;
+    }
+
+*/
 
     public void setMembersWhoHasntPayed(){
         Scanner scanner = new Scanner(System.in);
         for (int i = 0; i < hasntPayedMembers.size(); i++) {
             System.out.println("Type the memberId to change payment status");
-            System.out.println(hasntPayedMembers);
+            //System.out.println(hasntPayedMembers);
             int userInput = scanner.nextInt();
             if (hasntPayedMembers.get(i).getMemberId() == userInput){
                 hasntPayedMembers.get(i).setHasPaid(true);
@@ -69,9 +114,12 @@ public class Cashier {
         }
     }
 
-
     public static void main(String[] args) {
-        Cashier cashier = new Cashier();
+        MemberToSave member = new MemberToSave();
+        MemberGenerator memberGenerator = new MemberGenerator();
+        member.saveMemberDetailsToFile(memberGenerator.MemberGenerator());
+
+
 
     }
 }

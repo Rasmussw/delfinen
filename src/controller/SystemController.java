@@ -77,7 +77,7 @@ public class SystemController {
                     }else if (coachChoice == 2){
                         //Show elite swimmers
 
-                        eliteSwimmer.showEliteSwimmers();
+                        eliteSwimmer.addEliteSwimmer();
 
                         //til at få
 

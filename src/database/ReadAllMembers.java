@@ -23,6 +23,7 @@ public class ReadAllMembers {
     private String[] stringToArray;
     static ReadAllMembers readAllMembers = new ReadAllMembers();
 
+
     public ArrayList<Member> ReadAllMembers() {
         try {
             File file = new File("resources/members.csv");
@@ -111,5 +112,7 @@ public class ReadAllMembers {
         ReadAllMembers.readAllMembers.ReadAllMembers();
         System.out.println(readAllMembers.members);
     }
+
+
 }
 

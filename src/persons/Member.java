@@ -89,7 +89,24 @@ public class Member {
         this.hasPaid = hasPaid;
     }
 
+/*
     @Override
+
+    public String toString() {
+        return
+                name + "; "
+                + age + ", "
+                + adress + ", " +
+                + memberId + ", " +
+                isActive + ", " +
+                        isUnder18 +
+                ", " + isEliteSwimmer +
+                ", " + hasPaid;
+    }
+*/
+
+    @Override
+
     public String toString() {
         return "Member{" +
                 "name='" + name + '\'' +
@@ -102,4 +119,7 @@ public class Member {
                 ", hasPaid=" + hasPaid +
                 '}';
     }
+
+
+
 }
